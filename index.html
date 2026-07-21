@@ -141,6 +141,13 @@ h2{font-family:var(--display);font-size:clamp(26px,6vw,40px);letter-spacing:.5px
 .card.dasher .cbody{padding:16px}
 .card.dasher .photo{aspect-ratio:auto;height:180px}
 
+/* ── REF BUBBLE ─────────────────────── */
+.refbubble{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#241C08,var(--panel));border:1px solid var(--gold-dk);border-radius:16px;padding:14px 18px;margin:22px 0 6px}
+.refbubble img,.refbubble .avatar-fallback{width:86px;height:86px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold);flex:0 0 86px}
+.refbubble .rb-label{font-family:var(--cond);font-weight:800;font-size:12px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.refbubble .rb-quote{font-size:14px;line-height:1.5;color:var(--white);font-style:italic}
+.refbubble .rb-sig{font-family:var(--cond);font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:5px}
+
 /* ── SETTINGS MODAL ─────────────────── */
 .modal{position:fixed;inset:0;background:rgba(5,8,18,.8);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
 .modal.open{display:flex}
@@ -189,6 +196,14 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
     <h2>THE LADDER</h2>
     <p class="lede">Pod match win = 1 pt · Championship win = 2 pts · Sudden death decides ties, awards nothing. Highest total after Day 3 lifts the Cup.</p>
     <div class="ladder" id="ladder"></div>
+    <div class="refbubble" id="refbubble">
+      <img src="Dasher.jpg" alt="Referee Dasher" onerror="this.src='images/dasher.jpg';this.onerror=function(){this.outerHTML='<div class=\'avatar-fallback\'>🐾</div>'}">
+      <div>
+        <div class="rb-label">🐾 Referee Cam · Live from the Sun Structure</div>
+        <div class="rb-quote">"Although he may look like he's sleeping in the sun structure — it's true, he isn't paying attention at all."</div>
+        <div class="rb-sig">— League Office · All rulings remain final</div>
+      </div>
+    </div>
   </section>
 
   <section class="view" id="view-d1"></section>
@@ -227,7 +242,7 @@ const PLAYERS = [
   { name:'Mark',    tag:'Trash Talk Tyrant' },
   { name:'Kim',     tag:'Xtra Crispy Champion' },
   { name:'Kaylee',  tag:'Quietly Dangerous' },
-  { name:'Kathryn', tag:'In Her we trust' },
+  { name:'Kathryn', tag:'In Her We Trust' },
   { name:'Kinsley', tag:'Rookie Sensation' },
   { name:'Sadie',   tag:'Future Hall of Famer' },
 ];
@@ -428,7 +443,7 @@ function renderRoster(){
   + `<div class="card dasher">${img('dasher','photo','🐾')}
       <div class="cbody"><div class="cname">Dasher</div>
       <div class="cpos">Head Referee · League Commissioner of Vibes</div>
-      <div class="cbio">Unbeaten in staredowns. Reviews every play from ground level. Has never once returned the cornhole bag. All rulings final, subject to snack-based appeals.</div></div></div>`;
+      <div class="cbio">Officiates every match from the sun structure. May appear to be asleep — he is. Reviews zero plays. Has never once returned the cornhole bag. All rulings final, subject to snack-based appeals.</div></div></div>`;
 }
 
 /* ═══════════ ACTIONS (referee) ═══════════ */
