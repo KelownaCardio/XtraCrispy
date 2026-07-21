@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EXTRA CRISPY CHAMPIONSHIP 2026 · Official Broadcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --arena:#0B1020; --arena2:#131A33; --panel:#1A2240; --panel2:#212B52;
+  --gold:#F5C542; --gold-dk:#C99B1D; --red:#E4372E; --green:#2ECC71;
+  --white:#F4F6FB; --muted:#8B94B8; --line:#2A3560;
+  --display:'Anton',sans-serif; --cond:'Barlow Condensed',sans-serif; --body:'Barlow',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 600px at 50% -100px,#1C2650 0%,var(--arena) 55%);color:var(--white);font-family:var(--body);min-height:100vh;-webkit-text-size-adjust:100%}
+button{font-family:inherit;cursor:pointer}
+
+/* ── TICKER ─────────────────────────── */
+.ticker{background:var(--red);overflow:hidden;white-space:nowrap;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.ticker-inner{display:inline-block;padding:7px 0;animation:tick 40s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker span{margin:0 28px}
+@media(prefers-reduced-motion:reduce){.ticker-inner{animation:none}}
+
+/* ── HEADER / HERO ──────────────────── */
+header{padding:26px 16px 8px;text-align:center;position:relative}
+.presented{font-family:var(--cond);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-size:clamp(38px,9vw,76px);line-height:.95;letter-spacing:1px;
+  background:linear-gradient(180deg,#FFF 20%,var(--gold) 75%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 8px 40px rgba(245,197,66,.25)}
+.year{font-family:var(--display);font-size:clamp(22px,5vw,34px);color:var(--red);letter-spacing:6px;margin-top:2px;text-shadow:0 0 24px rgba(228,55,46,.5)}
+.sub{font-family:var(--cond);font-weight:600;font-size:clamp(14px,3vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.ref-official{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:7px 16px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.ref-official .paw{font-size:17px}
+
+/* ── STATUS BAR ─────────────────────── */
+.statusbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:14px 16px 4px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 14px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.dot.live{background:var(--red);box-shadow:0 0 0 0 rgba(228,55,46,.6);animation:pulse 1.6s infinite}
+.dot.ok{background:var(--green)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(228,55,46,.55)}70%{box-shadow:0 0 0 9px rgba(228,55,46,0)}100%{box-shadow:0 0 0 0 rgba(228,55,46,0)}}
+.reftoggle{border:1px solid var(--gold-dk);background:transparent;color:var(--gold);border-radius:9px;padding:8px 16px;font-family:var(--cond);font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;transition:.15s}
+.reftoggle.on{background:var(--gold);color:#161616;box-shadow:0 0 22px rgba(245,197,66,.45)}
+.gear{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:9px;padding:8px 12px;font-size:15px}
+
+/* ── NAV ────────────────────────────── */
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;gap:4px;padding:10px 8px;background:rgba(11,16,32,.92);backdrop-filter:blur(8px);border-bottom:2px solid var(--line);overflow-x:auto}
+nav button{flex:0 0 auto;background:transparent;border:none;color:var(--muted);font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:1.2px;text-transform:uppercase;padding:9px 14px;border-radius:8px;transition:.15s}
+nav button.active{background:var(--gold);color:#161616}
+nav button:not(.active):hover{color:var(--white)}
+
+main{max-width:900px;margin:0 auto;padding:22px 14px 90px}
+section.view{display:none}
+section.view.active{display:block;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--cond);font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+h2{font-family:var(--display);font-size:clamp(26px,6vw,40px);letter-spacing:.5px;margin-bottom:4px}
+.lede{color:var(--muted);font-size:15px;margin-bottom:20px}
+
+/* ── THE LADDER ─────────────────────── */
+.ladder{display:flex;flex-direction:column;gap:10px;position:relative}
+.rung{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,var(--panel) 0%,var(--panel2) 100%);border:1px solid var(--line);border-radius:14px;padding:12px 16px;transition:transform .6s cubic-bezier(.22,1,.36,1),box-shadow .3s;position:relative;overflow:hidden}
+.rung.first{border-color:var(--gold);box-shadow:0 0 30px rgba(245,197,66,.22);background:linear-gradient(90deg,#2A2410 0%,var(--panel2) 60%)}
+.rung .rank{font-family:var(--display);font-size:26px;width:44px;text-align:center;color:var(--muted)}
+.rung.first .rank{color:var(--gold)}
+.headshot{width:56px;height:56px;border-radius:50%;flex:0 0 56px;border:3px solid var(--line);object-fit:cover;background:var(--panel2)}
+.rung.first .headshot{border-color:var(--gold)}
+.avatar-fallback{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--gold);background:linear-gradient(135deg,#2B355E,#1A2240)}
+.rung .who{flex:1;min-width:0}
+.rung .name{font-family:var(--cond);font-weight:800;font-size:20px;letter-spacing:1px;text-transform:uppercase}
+.rung .tagline{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rung .stats{text-align:right}
+.rung .pts{font-family:var(--display);font-size:30px;color:var(--gold)}
+.rung .ptlbl{font-family:var(--cond);font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.mover{position:absolute;right:12px;top:8px;font-family:var(--cond);font-weight:800;font-size:12px;letter-spacing:1px}
+.mover.up{color:var(--green)} .mover.down{color:var(--red)}
+.crownbig{font-size:22px;margin-left:2px}
+
+/* ── DAY / PODS ─────────────────────── */
+.daysplash{background:linear-gradient(135deg,var(--panel) 0%,var(--panel2) 100%);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:18px;display:flex;align-items:center;gap:16px}
+.daysplash .icon{font-size:44px}
+.daysplash .rules{color:var(--muted);font-size:13.5px;margin-top:3px;line-height:1.45}
+.podgrid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:720px){.podgrid{grid-template-columns:1fr 1fr}}
+.pod{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.pod header{padding:12px 16px;background:var(--panel2);display:flex;justify-content:space-between;align-items:center;text-align:left}
+.pod .podname{font-family:var(--cond);font-weight:800;font-size:17px;letter-spacing:2px;text-transform:uppercase}
+.pod .standing{font-family:var(--cond);font-size:12px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.podbody{padding:12px}
+
+.match{background:var(--arena2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.match .vs{display:flex;justify-content:space-between;align-items:center;font-family:var(--cond);font-weight:700;font-size:16px;letter-spacing:.5px}
+.match .vs .mini{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid var(--line);vertical-align:middle;margin-right:7px}
+.match .won{color:var(--gold)}
+.scoreline{display:flex;align-items:center;gap:8px;margin-top:8px}
+.scoreline .snum{font-family:var(--display);font-size:24px;min-width:40px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1px 0}
+.scoreline .grow{flex:1;display:flex;gap:5px}
+.scoreline button{flex:1;background:var(--panel2);border:1px solid var(--line);color:var(--white);border-radius:8px;padding:9px 0;font-family:var(--cond);font-weight:800;font-size:15px;transition:.1s}
+.scoreline button:active{transform:scale(.94);background:var(--gold);color:#161616}
+.scoreline button.minus{flex:0 0 34px;color:var(--red)}
+.winnertag{margin-top:7px;font-family:var(--cond);font-weight:800;font-size:13px;letter-spacing:1px;color:var(--green);text-transform:uppercase;min-height:17px}
+.pickrow{display:flex;gap:8px;margin-top:8px}
+.pickrow button{flex:1;background:var(--panel2);border:1px solid var(--line);color:var(--white);border-radius:8px;padding:10px 0;font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:.5px;transition:.12s}
+.pickrow button.picked{background:var(--gold);color:#161616;border-color:var(--gold)}
+.locked .scoreline button,.locked .pickrow button{opacity:.35;pointer-events:none}
+.locked .advsel,.locked .champpick button{opacity:.35;pointer-events:none}
+
+.advbox{background:var(--arena2);border:1px dashed var(--gold-dk);border-radius:12px;padding:10px 12px;margin-top:4px}
+.advbox .lbl{font-family:var(--cond);font-weight:800;font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.advsel{width:100%;background:var(--panel);color:var(--white);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-family:var(--cond);font-weight:700;font-size:16px}
+.tienote{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+.tiewarn{color:var(--gold);font-weight:700}
+
+.champzone{margin-top:18px;background:linear-gradient(135deg,#241C08,#1A2240);border:1px solid var(--gold-dk);border-radius:16px;padding:16px}
+.champzone .title{font-family:var(--display);font-size:22px;color:var(--gold);letter-spacing:1px;margin-bottom:2px}
+.champzone .sub2{color:var(--muted);font-family:var(--cond);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.champpick{display:flex;gap:10px}
+.champpick button{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--white);border-radius:10px;padding:14px 0;font-family:var(--cond);font-weight:800;font-size:17px;letter-spacing:1px;text-transform:uppercase;transition:.12s}
+.champpick button.picked{background:var(--gold);color:#161616;border-color:var(--gold);box-shadow:0 0 24px rgba(245,197,66,.4)}
+.champpick button:disabled{opacity:.3;cursor:default}
+.champdone{margin-top:10px;font-family:var(--cond);font-weight:800;letter-spacing:1px;color:var(--gold);text-transform:uppercase;font-size:14px}
+
+/* ── ROSTER ─────────────────────────── */
+.roster{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(min-width:720px){.roster{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card .photo{width:100%;aspect-ratio:1;object-fit:cover;background:var(--panel2)}
+.card .photo.avatar-fallback{aspect-ratio:1;font-size:44px}
+.card .cbody{padding:12px 10px 14px}
+.card .cname{font-family:var(--cond);font-weight:800;font-size:19px;letter-spacing:1.5px;text-transform:uppercase}
+.card .cpos{font-family:var(--cond);font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin:2px 0 6px}
+.card .cbio{color:var(--muted);font-size:12.5px;line-height:1.45;min-height:36px}
+.card.dasher{border-color:var(--gold-dk);grid-column:1/-1}
+@media(min-width:720px){.card.dasher{grid-column:span 4}}
+.card.dasher .cbody{padding:16px}
+.card.dasher .photo{aspect-ratio:auto;height:180px}
+
+/* ── SETTINGS MODAL ─────────────────── */
+.modal{position:fixed;inset:0;background:rgba(5,8,18,.8);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal.open{display:flex}
+.modalbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:480px;width:100%;padding:22px}
+.modalbox h3{font-family:var(--cond);font-weight:800;font-size:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.modalbox p{color:var(--muted);font-size:13.5px;line-height:1.5;margin-bottom:12px}
+.modalbox input{width:100%;background:var(--arena2);border:1px solid var(--line);color:var(--white);border-radius:9px;padding:11px 12px;font-size:14px;margin-bottom:12px}
+.modalbox .mrow{display:flex;gap:10px}
+.modalbox .mrow button{flex:1;border-radius:9px;padding:11px 0;font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;border:none}
+.msave{background:var(--gold);color:#161616}.mclose{background:var(--panel2);color:var(--white);border:1px solid var(--line)!important}
+
+footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:var(--cond);font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#161616;font-family:var(--cond);font-weight:800;letter-spacing:1px;font-size:14px;text-transform:uppercase;padding:11px 22px;border-radius:30px;transition:transform .3s;z-index:99;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
+
+<header>
+  <div class="presented">An Okanagan Backyard Sports Production</div>
+  <h1>EXTRA CRISPY<br>CHAMPIONSHIP</h1><div class="year">2026</div>
+  <div class="sub">Three Days · Three Games · One Champion</div>
+  <div class="ref-official"><span class="paw">🐾</span> Officiated by Dasher · Head Referee · Incorruptible (except by treats)</div>
+</header>
+
+<div class="statusbar">
+  <span class="chip"><span class="dot live"></span> LIVE</span>
+  <span class="chip" id="syncchip"><span class="dot" id="syncdot"></span> <span id="synctext">Local only</span></span>
+  <button class="reftoggle" id="reftoggle">🐾 Referee Mode: OFF</button>
+  <button class="gear" id="gearbtn" title="Sync settings">⚙️</button>
+</div>
+
+<nav id="nav">
+  <button data-view="ladder" class="active">The Ladder</button>
+  <button data-view="d1">Day 1 · Cornhole</button>
+  <button data-view="d2">Day 2 · Ladder Toss</button>
+  <button data-view="d3">Day 3 · Beer Pong</button>
+  <button data-view="roster">The Roster</button>
+</nav>
+
+<main>
+  <section class="view active" id="view-ladder">
+    <div class="eyebrow">Overall Standings</div>
+    <h2>THE LADDER</h2>
+    <p class="lede">Pod match win = 1 pt · Championship win = 2 pts · Sudden death decides ties, awards nothing. Highest total after Day 3 lifts the Cup.</p>
+    <div class="ladder" id="ladder"></div>
+  </section>
+
+  <section class="view" id="view-d1"></section>
+  <section class="view" id="view-d2"></section>
+  <section class="view" id="view-d3"></section>
+
+  <section class="view" id="view-roster">
+    <div class="eyebrow">Meet the Athletes</div>
+    <h2>THE ROSTER</h2>
+    <p class="lede">Eight competitors. Zero professional experience. Unlimited confidence.</p>
+    <div class="roster" id="roster"></div>
+  </section>
+</main>
+
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <h3>⚙️ Live Sync Setup</h3>
+    <p>Paste your Google Apps Script Web App URL to sync scores across every device. Leave blank to run in local-only mode (scores stay on this device).</p>
+    <input type="text" id="apiurl" placeholder="https://script.google.com/macros/s/.../exec">
+    <div class="mrow">
+      <button class="msave" id="msave">Save</button>
+      <button class="mclose" id="mclose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>Extra Crispy Championship 2026 · All rulings by Referee Dasher are final and may be appealed with cheese</footer>
+
+<script>
+/* ═══════════ CONFIG ═══════════ */
+const PLAYERS = [
+  { name:'Sonny',   tag:'The Veteran Presence' },
+  { name:'Gregg',   tag:'Undisclosed Training Regimen' },
+  { name:'Mark',    tag:'Files Formal Protests' },
+  { name:'Kim',     tag:'Quietly Dangerous' },
+  { name:'Kaylee',  tag:'Trash Talk Specialist' },
+  { name:'Kathryn', tag:'The Commissioner Who Also Plays' },
+  { name:'Kinsley', tag:'Rookie Sensation' },
+  { name:'Sadie',   tag:'Future Hall of Famer' },
+];
+const DAYS = [
+  { id:'d1', num:'Day 1', name:'Cornhole', icon:'🌽', inc:[1,2], target:11,
+    rules:'Tap +1 / +2 per round. First to 11 takes the match.',
+    pods:{ a:['Sonny','Gregg','Kathryn','Kinsley'], b:['Mark','Kim','Kaylee','Sadie'] } },
+  { id:'d2', num:'Day 2', name:'Ladder Toss', icon:'🪜', inc:[1,2,3], target:11,
+    rules:'Tap +1 / +2 / +3 per round. First to 11 takes the match.',
+    pods:{ a:['Gregg','Mark','Kaylee','Sadie'], b:['Sonny','Kim','Kathryn','Kinsley'] } },
+  { id:'d3', num:'Day 3', name:'Beer Pong', icon:'🍺', inc:null, target:null,
+    rules:'Referee declares the winner of each match. Kids throw at water cups; adults live with their choices.',
+    pods:{ a:['Sonny','Mark','Kaylee','Kinsley'], b:['Gregg','Kim','Kathryn','Sadie'] } },
+];
+const PAIRS4 = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+const TICKS = [
+  '🏆 EXTRA CRISPY CHAMPIONSHIP 2026 — LIVE FROM THE BACKYARD',
+  '🐾 REFEREE DASHER HAS COMPLETED HIS PRE-GAME NAP',
+  '🌽 DAY 1: CORNHOLE — FIRST TO 11',
+  '🪜 DAY 2: LADDER TOSS — BOLAS WILL FLY',
+  '🍺 DAY 3: BEER PONG — LEGACIES ON THE LINE',
+  '📋 ALL SUDDEN-DEATH RULINGS ARE FINAL',
+  '🔥 POD WIN 1 PT · CHAMPIONSHIP 2 PTS',
+];
+
+/* ═══════════ STATE ═══════════ */
+function blankState(){
+  const s = { v:0, matches:{}, adv:{}, champ:{} };
+  DAYS.forEach(d=>{
+    ['a','b'].forEach(p=>{
+      PAIRS4.forEach((_,i)=>{ s.matches[`${d.id}_${p}_${i}`] = d.inc ? {s1:0,s2:0,w:''} : {w:''}; });
+      s.adv[`${d.id}_${p}`]='';
+    });
+    s.champ[d.id]='';
+  });
+  return s;
+}
+let state = blankState();
+let refMode = false;
+const DEFAULT_API = 'https://script.google.com/macros/s/AKfycbwRIjMGKMJ4u1D66ajQZW_g4vovGkh98YnwPumZfNMI3Ivd3J9gTwQPgl3bQOie9pGY/exec';
+let apiUrl = localStorage.getItem('crispy_api') || DEFAULT_API;
+let prevRanks = {};
+let saveTimer = null, pollTimer = null;
+
+try { const cached = localStorage.getItem('crispy_state'); if (cached) state = Object.assign(blankState(), JSON.parse(cached)); } catch(e){}
+
+/* ═══════════ HELPERS ═══════════ */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+function img(name,cls,fallbackTxt){
+  const base = 'images/'+name.toLowerCase();
+  return `<img class="${cls}" src="${base}.jpg" alt="${name}"
+    onerror="if(this.src.endsWith('.jpg')){this.src='${base}.png'}else{this.outerHTML='<div class=\\'${cls} avatar-fallback\\'>${fallbackTxt}</div>'}">`;
+}
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+
+/* ═══════════ SCORING ═══════════ */
+function computeTotals(){
+  const pod={},champ={};
+  PLAYERS.forEach(p=>{pod[p.name]=0;champ[p.name]=0});
+  DAYS.forEach(d=>{
+    ['a','b'].forEach(pk=>{
+      PAIRS4.forEach((pr,i)=>{
+        const m = state.matches[`${d.id}_${pk}_${i}`];
+        if (m && m.w && pod[m.w]!==undefined) pod[m.w]+=1;
+      });
+    });
+    const cw = state.champ[d.id];
+    if (cw && champ[cw]!==undefined) champ[cw]+=2;
+  });
+  return PLAYERS.map(p=>({name:p.name,tag:p.tag,pod:pod[p.name],champ:champ[p.name],total:pod[p.name]+champ[p.name]}))
+    .sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
+}
+function podRecord(day,podKey){
+  const names = day.pods[podKey], wins={};
+  names.forEach(n=>wins[n]=0);
+  let done=0;
+  PAIRS4.forEach((pr,i)=>{
+    const m = state.matches[`${day.id}_${podKey}_${i}`];
+    if (m && m.w){ wins[m.w]=(wins[m.w]||0)+1; done++; }
+  });
+  return {wins,done};
+}
+
+/* ═══════════ RENDER: LADDER ═══════════ */
+function renderLadder(){
+  const rows = computeTotals();
+  const el = $('#ladder');
+  el.innerHTML = rows.map((r,i)=>{
+    const prev = prevRanks[r.name];
+    let mv='';
+    if (prev!==undefined && prev!==i){
+      mv = prev>i ? `<span class="mover up">▲ ${prev-i}</span>` : `<span class="mover down">▼ ${i-prev}</span>`;
+    }
+    return `<div class="rung ${i===0&&r.total>0?'first':''}" data-name="${r.name}">
+      <div class="rank">${i+1}</div>
+      ${img(r.name,'headshot',r.name[0])}
+      <div class="who"><div class="name">${r.name}${i===0&&r.total>0?'<span class="crownbig">👑</span>':''}</div>
+      <div class="tagline">${r.tag}</div></div>
+      <div class="stats"><div class="pts">${r.total}</div><div class="ptlbl">${r.pod}W · ${r.champ>0?(r.champ/2)+' champ':'0 champ'}</div></div>
+      ${mv}</div>`;
+  }).join('');
+  const nr={}; rows.forEach((r,i)=>nr[r.name]=i);
+  prevRanks=nr;
+}
+/* FLIP animation on re-render */
+function animateLadder(fn){
+  const before={};
+  $$('#ladder .rung').forEach(r=>before[r.dataset.name]=r.getBoundingClientRect().top);
+  fn();
+  $$('#ladder .rung').forEach(r=>{
+    const b=before[r.dataset.name];
+    if(b===undefined)return;
+    const d=b-r.getBoundingClientRect().top;
+    if(d){ r.style.transition='none'; r.style.transform=`translateY(${d}px)`;
+      requestAnimationFrame(()=>{ r.style.transition='transform .6s cubic-bezier(.22,1,.36,1)'; r.style.transform=''; }); }
+  });
+}
+
+/* ═══════════ RENDER: DAY VIEWS ═══════════ */
+function renderDay(day){
+  const v = $('#view-'+day.id);
+  const lockCls = refMode ? '' : 'locked';
+  const podHtml = pk=>{
+    const names = day.pods[pk];
+    const {wins,done} = podRecord(day,pk);
+    const standing = names.map(n=>`${n} ${wins[n]||0}W`).join(' · ');
+    const max = Math.max(...names.map(n=>wins[n]||0));
+    const leaders = names.filter(n=>(wins[n]||0)===max && max>0);
+    const tie = done===6 && leaders.length>1;
+    const matches = PAIRS4.map((pr,i)=>{
+      const p1=names[pr[0]],p2=names[pr[1]];
+      const key=`${day.id}_${pk}_${i}`, m=state.matches[key];
+      if (day.inc){
+        const wtag = m.w?`✅ ${m.w} takes it — 1 pt`:'';
+        return `<div class="match">
+          <div class="vs"><span class="${m.w===p1?'won':''}">${img(p1,'mini',p1[0])}${p1}</span><span style="color:var(--muted);font-size:13px">VS</span><span class="${m.w===p2?'won':''}">${p2}${img(p2,'mini',p2[0])}</span></div>
+          <div class="scoreline"><span class="snum">${m.s1}</span>
+            <button class="minus" onclick="bump('${key}','s1',-1)">−</button>
+            <div class="grow">${day.inc.map(n=>`<button onclick="bump('${key}','s1',${n})">+${n}</button>`).join('')}</div></div>
+          <div class="scoreline"><span class="snum">${m.s2}</span>
+            <button class="minus" onclick="bump('${key}','s2',-1)">−</button>
+            <div class="grow">${day.inc.map(n=>`<button onclick="bump('${key}','s2',${n})">+${n}</button>`).join('')}</div></div>
+          <div class="winnertag">${wtag}</div></div>`;
+      } else {
+        return `<div class="match">
+          <div class="vs"><span class="${m.w===p1?'won':''}">${img(p1,'mini',p1[0])}${p1}</span><span style="color:var(--muted);font-size:13px">VS</span><span class="${m.w===p2?'won':''}">${p2}${img(p2,'mini',p2[0])}</span></div>
+          <div class="pickrow">
+            <button class="${m.w===p1?'picked':''}" onclick="pickWin('${key}','${p1}')">${p1} wins</button>
+            <button class="${m.w===p2?'picked':''}" onclick="pickWin('${key}','${p2}')">${p2} wins</button></div>
+          <div class="winnertag">${m.w?`✅ ${m.w} — 1 pt`:''}</div></div>`;
+      }
+    }).join('');
+    const advKey=`${day.id}_${pk}`;
+    return `<div class="pod ${lockCls}">
+      <header><span class="podname">Pod ${pk.toUpperCase()}</span><span class="standing">${standing}</span></header>
+      <div class="podbody">${matches}
+        <div class="advbox">
+          <div class="lbl">Advances to Championship</div>
+          <select class="advsel" onchange="setAdv('${advKey}',this.value)">
+            <option value="">— select —</option>
+            ${names.map(n=>`<option ${state.adv[advKey]===n?'selected':''}>${n}</option>`).join('')}
+          </select>
+          <div class="tienote">${tie?`<span class="tiewarn">⚠️ Tie at the top (${leaders.join(', ')}). Dasher orders SUDDEN DEATH: one round each, best result advances. No points awarded.</span>`:'Tie at the top? Sudden death: one round each, winner advances. No points.'}</div>
+        </div>
+      </div></div>`;
+  };
+  const advA=state.adv[`${day.id}_a`], advB=state.adv[`${day.id}_b`];
+  const cw = state.champ[day.id];
+  v.innerHTML = `
+    <div class="eyebrow">${day.num}</div>
+    <h2>${day.icon} ${day.name.toUpperCase()}</h2>
+    <div class="daysplash"><div class="icon">${day.icon}</div>
+      <div><b style="font-family:var(--cond);letter-spacing:1px;font-size:16px;text-transform:uppercase">Format:</b> two pods of four, full round-robin (6 matches per pod), pod winners meet in the Championship.
+      <div class="rules">${day.rules} Match win = 1 pt.</div></div></div>
+    <div class="podgrid">${podHtml('a')}${podHtml('b')}</div>
+    <div class="champzone ${lockCls}">
+      <div class="title">👑 THE ${day.name.toUpperCase()} CHAMPIONSHIP</div>
+      <div class="sub2">Pod A winner vs Pod B winner · Winner takes 2 pts</div>
+      <div class="champpick">
+        <button ${!advA?'disabled':''} class="${cw&&cw===advA?'picked':''}" onclick="pickChamp('${day.id}','${advA||''}')">${advA||'Pod A — TBD'}</button>
+        <button ${!advB?'disabled':''} class="${cw&&cw===advB?'picked':''}" onclick="pickChamp('${day.id}','${advB||''}')">${advB||'Pod B — TBD'}</button>
+      </div>
+      <div class="champdone">${cw?`🏆 ${cw} is your ${day.name} champion — 2 pts`:''}</div>
+    </div>`;
+}
+
+/* ═══════════ RENDER: ROSTER ═══════════ */
+function renderRoster(){
+  $('#roster').innerHTML = PLAYERS.map(p=>`
+    <div class="card">${img(p.name,'photo',p.name[0])}
+      <div class="cbody"><div class="cname">${p.name}</div>
+      <div class="cpos">${p.tag}</div>
+      <div class="cbio">Scouting report pending. Sources say: "a problem."</div></div></div>`).join('')
+  + `<div class="card dasher">${img('dasher','photo','🐾')}
+      <div class="cbody"><div class="cname">Dasher</div>
+      <div class="cpos">Head Referee · League Commissioner of Vibes</div>
+      <div class="cbio">Unbeaten in staredowns. Reviews every play from ground level. Has never once returned the cornhole bag. All rulings final, subject to snack-based appeals.</div></div></div>`;
+}
+
+/* ═══════════ ACTIONS (referee) ═══════════ */
+function bump(key,side,n){
+  if(!refMode) return;
+  const day = DAYS.find(d=>key.startsWith(d.id));
+  const m = state.matches[key];
+  m[side]=Math.max(0,(m[side]||0)+n);
+  const t=day.target;
+  m.w = (m.s1>=t&&m.s1>m.s2)?nameFromKey(key,0):(m.s2>=t&&m.s2>m.s1)?nameFromKey(key,1):'';
+  commit();
+}
+function nameFromKey(key,idx){
+  const [did,pk,i]=key.split('_');
+  const day=DAYS.find(d=>d.id===did);
+  return day.pods[pk][PAIRS4[+i][idx]];
+}
+function pickWin(key,name){
+  if(!refMode) return;
+  const m=state.matches[key];
+  m.w = m.w===name?'':name;
+  commit();
+}
+function setAdv(key,val){ if(!refMode) return; state.adv[key]=val;
+  const did=key.split('_')[0]; if(state.champ[did] && state.champ[did]!==state.adv[did+'_a'] && state.champ[did]!==state.adv[did+'_b']) state.champ[did]='';
+  commit(); }
+function pickChamp(did,name){ if(!refMode||!name) return; state.champ[did]=state.champ[did]===name?'':name; commit(); }
+
+/* ═══════════ SYNC ═══════════ */
+function commit(){
+  state.v = Date.now();
+  localStorage.setItem('crispy_state', JSON.stringify(state));
+  renderAll();
+  if (apiUrl){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(pushState, 600);
+  }
+}
+async function pushState(){
+  try{
+    await fetch(apiUrl,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(state)});
+    setSync('ok','Synced');
+  }catch(e){ setSync('','Sync failed — retrying'); setTimeout(pushState,4000); }
+}
+async function pullState(){
+  if(!apiUrl) return;
+  try{
+    const r = await fetch(apiUrl+'?t='+Date.now());
+    const remote = await r.json();
+    if (remote && remote.v && remote.v > state.v){
+      state = Object.assign(blankState(), remote);
+      localStorage.setItem('crispy_state', JSON.stringify(state));
+      animateLadder(renderAll);
+    }
+    setSync('ok','Synced');
+  }catch(e){ setSync('','Offline — local scores'); }
+}
+function setSync(cls,txt){ $('#syncdot').className='dot '+cls; $('#synctext').textContent=txt; }
+function startPolling(){ clearInterval(pollTimer); if(apiUrl) pollTimer=setInterval(pullState, 8000); }
+
+/* ═══════════ UI WIRING ═══════════ */
+function renderAll(){ renderLadder(); DAYS.forEach(renderDay); }
+$('#nav').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  $$('#nav button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $('#view-'+b.dataset.view).classList.add('active');
+});
+$('#reftoggle').addEventListener('click',()=>{
+  refMode=!refMode;
+  const b=$('#reftoggle');
+  b.classList.toggle('on',refMode);
+  b.textContent = refMode?'🐾 Referee Mode: ON':'🐾 Referee Mode: OFF';
+  toast(refMode?'Dasher has deputized you. Score responsibly.':'Referee whistle surrendered.');
+  renderAll();
+});
+$('#gearbtn').addEventListener('click',()=>{ $('#apiurl').value=apiUrl; $('#modal').classList.add('open'); });
+$('#mclose').addEventListener('click',()=>$('#modal').classList.remove('open'));
+$('#msave').addEventListener('click',()=>{
+  apiUrl=$('#apiurl').value.trim();
+  localStorage.setItem('crispy_api',apiUrl);
+  $('#modal').classList.remove('open');
+  if(apiUrl){ toast('Live sync connected'); pullState(); startPolling(); }
+  else { setSync('','Local only'); toast('Running local-only'); clearInterval(pollTimer); }
+});
+$('#ticker').innerHTML = (TICKS.concat(TICKS)).map(t=>`<span>${t}</span>`).join('');
+
+renderRoster(); renderAll();
+if(apiUrl){ pullState(); startPolling(); } else setSync('','Local only');
+</script>
+</body>
+</html>
