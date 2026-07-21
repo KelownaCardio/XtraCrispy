@@ -277,9 +277,13 @@ try { const cached = localStorage.getItem('crispy_state'); if (cached) state = O
 /* ═══════════ HELPERS ═══════════ */
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 function img(name,cls,fallbackTxt){
-  const base = 'images/'+name.toLowerCase();
-  return `<img class="${cls}" src="${base}.jpg" alt="${name}"
-    onerror="if(this.src.endsWith('.jpg')){this.src='${base}.png'}else{this.outerHTML='<div class=\\'${cls} avatar-fallback\\'>${fallbackTxt}</div>'}">`;
+  const cap = name.charAt(0).toUpperCase()+name.slice(1).toLowerCase();
+  const cands = [cap+'.jpg', cap+'.JPG', cap+'.png', cap+'.jpeg',
+                 'images/'+name.toLowerCase()+'.jpg', 'images/'+name.toLowerCase()+'.png'];
+  return `<img class="${cls}" src="${cands[0]}" alt="${name}" data-cands='${JSON.stringify(cands)}' data-ci="0"
+    onerror="(function(el){const c=JSON.parse(el.dataset.cands);let i=+el.dataset.ci+1;
+      if(i<c.length){el.dataset.ci=i;el.src=c[i];}
+      else{el.outerHTML='<div class=\\'${cls} avatar-fallback\\'>${fallbackTxt}</div>';}})(this)">`;
 }
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 
