@@ -593,12 +593,12 @@ $('#ticker').innerHTML = (TICKS.concat(TICKS)).map(t=>`<span>${t}</span>`).join(
 
 /* ── Splash + anthem ── */
 const anthem = $('#anthem');
-let anthemOk = false;
-anthem.addEventListener('canplaythrough', ()=>{ anthemOk = true; });
-anthem.addEventListener('error', ()=>{ anthemOk = false; $('#soundbtn').style.display='none'; });
+anthem.addEventListener('error', ()=>{ $('#soundbtn').style.display='none'; });
 $('#enterbtn').addEventListener('click', ()=>{
   $('#splash').classList.add('gone');
-  if (anthemOk){ anthem.volume=.85; anthem.play().catch(()=>{}); $('#soundbtn').textContent='🔊'; }
+  anthem.volume=.85;
+  anthem.play().then(()=>{ $('#soundbtn').textContent='🔊'; })
+    .catch(()=>{ $('#soundbtn').style.display='none'; });
 });
 $('#soundbtn').addEventListener('click', ()=>{
   if (anthem.paused){ anthem.play().catch(()=>{}); $('#soundbtn').textContent='🔊'; }
