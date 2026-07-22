@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EXTRA CRISPY CHAMPIONSHIP 2026 · Official Broadcast</title>
+<title>XTRA CRISPY CHAMPIONSHIP 2026 · Official Broadcast</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -31,6 +31,7 @@ header{padding:26px 16px 8px;text-align:center;position:relative}
 h1{font-family:var(--display);font-size:clamp(38px,9vw,76px);line-height:.95;letter-spacing:1px;
   background:linear-gradient(180deg,#FFF 20%,var(--gold) 75%);-webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:0 8px 40px rgba(245,197,66,.25)}
+.bigx{font-size:1.25em;line-height:.8}
 .year{font-family:var(--display);font-size:clamp(22px,5vw,34px);color:var(--red);letter-spacing:6px;margin-top:2px;text-shadow:0 0 24px rgba(228,55,46,.5)}
 .sub{font-family:var(--cond);font-weight:600;font-size:clamp(14px,3vw,19px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .ref-official{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:7px 16px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase}
@@ -148,6 +149,29 @@ h2{font-family:var(--display);font-size:clamp(26px,6vw,40px);letter-spacing:.5px
 .refbubble .rb-quote{font-size:14px;line-height:1.5;color:var(--white);font-style:italic}
 .refbubble .rb-sig{font-family:var(--cond);font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:5px}
 
+/* ── ENTRY SPLASH ───────────────────── */
+.splash{position:fixed;inset:0;z-index:200;background:radial-gradient(900px 500px at 50% 30%,#1C2650 0%,var(--arena) 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .7s,visibility .7s}
+.splash.gone{opacity:0;visibility:hidden;pointer-events:none}
+.splash .s-pre{font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);animation:sfade 1.2s ease both}
+.splash h1{margin:10px 0 4px}
+.splash .s-year{font-family:var(--display);font-size:clamp(24px,6vw,38px);color:var(--red);letter-spacing:8px;text-shadow:0 0 28px rgba(228,55,46,.55)}
+.splash .enterbtn{margin-top:38px;background:var(--gold);color:#161616;border:none;border-radius:40px;padding:18px 42px;font-family:var(--cond);font-weight:800;font-size:19px;letter-spacing:2.5px;text-transform:uppercase;box-shadow:0 0 40px rgba(245,197,66,.5);animation:breathe 1.8s ease-in-out infinite}
+.splash .s-note{margin-top:14px;font-family:var(--cond);font-size:13px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;line-height:1.7;max-width:420px}
+.pinwrap{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.pindots{display:flex;gap:14px;height:18px}
+.pindots span{width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);transition:.15s}
+.pindots span.fill{background:var(--gold);box-shadow:0 0 12px rgba(245,197,66,.6)}
+.pinpad{display:grid;grid-template-columns:repeat(3,64px);gap:10px}
+.pinpad button{width:64px;height:64px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--white);font-family:var(--cond);font-weight:800;font-size:22px;transition:.1s}
+.pinpad button:active{background:var(--gold);color:#161616;transform:scale(.94)}
+.pinpad button.pclear{font-size:15px;color:var(--muted)}
+.pinmsg{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--red);min-height:16px}
+.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-5px)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes sfade{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.splash .enterbtn{animation:none}}
+
 /* ── SETTINGS MODAL ─────────────────── */
 .modal{position:fixed;inset:0;background:rgba(5,8,18,.8);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
 .modal.open{display:flex}
@@ -166,11 +190,30 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
 </head>
 <body>
 
+<div class="splash" id="splash">
+  <div class="s-pre">You are now entering</div>
+  <h1><span class="bigx">X</span>TRA CRISPY<br>CHAMPIONSHIP</h1>
+  <div class="s-year">2026</div>
+  <div class="pinwrap" id="pinwrap" style="display:none">
+    <div class="pindots" id="pindots"><span></span><span></span><span></span><span></span></div>
+    <div class="pinpad" id="pinpad">
+      <button>1</button><button>2</button><button>3</button>
+      <button>4</button><button>5</button><button>6</button>
+      <button>7</button><button>8</button><button>9</button>
+      <button class="pclear" data-k="clear">CLEAR</button><button>0</button><button class="pclear" data-k="del">⌫</button>
+    </div>
+    <div class="pinmsg" id="pinmsg"></div>
+  </div>
+  <button class="enterbtn" id="enterbtn" style="display:none">🔊 Tap to Enter · Sound On</button>
+  <div class="s-note">Referee Dasher asks you ensure the volume is up on your phone before entering.<br>You have to be able to hear if his whistle blows…</div>
+</div>
+<audio id="anthem" src="anthem.mp3" loop preload="auto"></audio>
+
 <div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
 
 <header>
   <div class="presented">An Okanagan Backyard Sports Production</div>
-  <h1>EXTRA CRISPY<br>CHAMPIONSHIP</h1><div class="year">2026</div>
+  <h1><span class="bigx">X</span>TRA CRISPY<br>CHAMPIONSHIP</h1><div class="year">2026</div>
   <div class="sub">Three Days · Three Games · One Champion</div>
   <div class="ref-official"><span class="paw">🐾</span> Officiated by Dasher · Head Referee · Incorruptible (except by treats)</div>
 </header>
@@ -179,6 +222,7 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
   <span class="chip"><span class="dot live"></span> LIVE</span>
   <span class="chip" id="syncchip"><span class="dot" id="syncdot"></span> <span id="synctext">Local only</span></span>
   <button class="reftoggle" id="reftoggle">🐾 Referee Mode: OFF</button>
+  <button class="gear" id="soundbtn" title="Toggle anthem">🔊</button>
   <button class="gear" id="gearbtn" title="Sync settings">⚙️</button>
 </div>
 
@@ -194,7 +238,7 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
   <section class="view active" id="view-ladder">
     <div class="eyebrow">Overall Standings</div>
     <h2>THE LADDER</h2>
-    <p class="lede">Pod match win = 1 pt · Championship win = 2 pts · Sudden death decides ties, awards nothing. Highest total after Day 3 lifts the Cup.</p>
+    <p class="lede">Win your match: 1 point. Pod winners face off in a championship round worth 2 points. Tie in your pod? SUDDEN DEATH — one round, all the glory. Most points after Day 3 takes the Cup.</p>
     <div class="ladder" id="ladder"></div>
     <div class="refbubble" id="refbubble">
       <img src="Dasher.jpg" alt="Referee Dasher" onerror="this.src='images/dasher.jpg';this.onerror=function(){this.outerHTML='<div class=\'avatar-fallback\'>🐾</div>'}">
@@ -232,7 +276,7 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
 
 <div class="toast" id="toast"></div>
 
-<footer>Extra Crispy Championship 2026 · All rulings by Referee Dasher are final and may be appealed with cheese</footer>
+<footer>Xtra Crispy Championship 2026 · All rulings by Referee Dasher are final and may be appealed with cheese</footer>
 
 <script>
 /* ═══════════ CONFIG ═══════════ */
@@ -248,18 +292,18 @@ const PLAYERS = [
 ];
 const DAYS = [
   { id:'d1', num:'Day 1', name:'Cornhole', icon:'🌽', inc:[1,2], target:11,
-    rules:'Tap +1 / +2 per round. First to 11 takes the match.',
+    rules:'1 on the board, 2 in the hole. First to 11 wins!',
     pods:{ a:['Sonny','Gregg','Kathryn','Kinsley'], b:['Mark','Kim','Kaylee','Sadie'] } },
-  { id:'d2', num:'Day 2', name:'Ladder Toss', icon:'🪜', inc:[1,2,3], target:11,
-    rules:'Tap +1 / +2 / +3 per round. First to 11 takes the match.',
+  { id:'d2', num:'Day 2', name:'Ladder Toss', icon:'🪜', inc:[1,2,3], target:21,
+    rules:'Green = 1, Yellow = 2, White = 3 points. First to 21 wins!',
     pods:{ a:['Gregg','Mark','Kaylee','Sadie'], b:['Sonny','Kim','Kathryn','Kinsley'] } },
   { id:'d3', num:'Day 3', name:'Beer Pong', icon:'🍺', inc:null, target:null,
-    rules:'Referee declares the winner of each match. Kids throw at water cups; adults live with their choices.',
+    rules:'No re-racks.',
     pods:{ a:['Sonny','Mark','Kaylee','Kinsley'], b:['Gregg','Kim','Kathryn','Sadie'] } },
 ];
 const PAIRS4 = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
 const TICKS = [
-  '🏆 EXTRA CRISPY CHAMPIONSHIP 2026 — LIVE FROM THE BACKYARD',
+  '🏆 XTRA CRISPY CHAMPIONSHIP 2026 — LIVE FROM THE BACKYARD',
   '🐾 REFEREE DASHER HAS COMPLETED HIS PRE-GAME NAP',
   '🌽 DAY 1: CORNHOLE — FIRST TO 11',
   '🪜 DAY 2: LADDER TOSS — BOLAS WILL FLY',
@@ -419,8 +463,7 @@ function renderDay(day){
     <div class="eyebrow">${day.num}</div>
     <h2>${day.icon} ${day.name.toUpperCase()}</h2>
     <div class="daysplash"><div class="icon">${day.icon}</div>
-      <div><b style="font-family:var(--cond);letter-spacing:1px;font-size:16px;text-transform:uppercase">Format:</b> two pods of four, full round-robin (6 matches per pod), pod winners meet in the Championship.
-      <div class="rules">${day.rules} Match win = 1 pt.</div></div></div>
+      <div style="font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.5px">${day.rules}</div></div>
     <div class="podgrid">${podHtml('a')}${podHtml('b')}</div>
     <div class="champzone ${lockCls}">
       <div class="title">👑 THE ${day.name.toUpperCase()} CHAMPIONSHIP</div>
@@ -530,6 +573,52 @@ $('#msave').addEventListener('click',()=>{
   else { setSync('','Local only'); toast('Running local-only'); clearInterval(pollTimer); }
 });
 $('#ticker').innerHTML = (TICKS.concat(TICKS)).map(t=>`<span>${t}</span>`).join('');
+
+/* ── Splash + anthem + PIN ── */
+const PIN = '6263';   // ← change the tournament PIN here
+const anthem = $('#anthem');
+let anthemOk = false;
+anthem.addEventListener('canplaythrough', ()=>{ anthemOk = true; });
+anthem.addEventListener('error', ()=>{ anthemOk = false; $('#soundbtn').style.display='none'; });
+
+function enterSite(){
+  $('#splash').classList.add('gone');
+  if (anthemOk){ anthem.volume=.85; anthem.play().catch(()=>{}); $('#soundbtn').textContent='🔊'; }
+}
+
+const pinRemembered = localStorage.getItem('crispy_pin_ok') === PIN;
+if (pinRemembered){
+  $('#enterbtn').style.display='';
+} else {
+  $('#pinwrap').style.display='';
+}
+
+let pinBuf='';
+function drawDots(){ $$('#pindots span').forEach((d,i)=>d.classList.toggle('fill', i<pinBuf.length)); }
+$('#pinpad').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  const k=b.dataset.k || b.textContent.trim();
+  if (k==='clear'){ pinBuf=''; drawDots(); return; }
+  if (k==='del'){ pinBuf=pinBuf.slice(0,-1); drawDots(); return; }
+  if (!/^\d$/.test(k) || pinBuf.length>=4) return;
+  pinBuf+=k; drawDots();
+  if (pinBuf.length===4){
+    if (pinBuf===PIN){
+      localStorage.setItem('crispy_pin_ok', PIN);
+      $('#pinmsg').textContent='';
+      enterSite();
+    } else {
+      $('#pinmsg').textContent='Dasher says no. Try again.';
+      $('#pindots').classList.add('shake');
+      setTimeout(()=>{ $('#pindots').classList.remove('shake'); pinBuf=''; drawDots(); }, 450);
+    }
+  }
+});
+$('#enterbtn').addEventListener('click', enterSite);
+$('#soundbtn').addEventListener('click', ()=>{
+  if (anthem.paused){ anthem.play().catch(()=>{}); $('#soundbtn').textContent='🔊'; }
+  else { anthem.pause(); $('#soundbtn').textContent='🔇'; }
+});
 
 renderRoster(); renderAll();
 if(apiUrl){ pullState(); startPolling(); } else setSync('','Local only');
