@@ -140,7 +140,8 @@ h2{font-family:var(--display);font-size:clamp(26px,6vw,40px);letter-spacing:.5px
 .card.dasher{border-color:var(--gold-dk);grid-column:1/-1}
 @media(min-width:720px){.card.dasher{grid-column:span 4}}
 .card.dasher .cbody{padding:16px}
-.card.dasher .photo{aspect-ratio:auto;height:180px}
+.card.dasher .photo{aspect-ratio:auto;height:340px;object-position:50% 22%}
+@media(max-width:719px){.card.dasher .photo{height:280px}}
 
 /* ── REF BUBBLE ─────────────────────── */
 .refbubble{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#241C08,var(--panel));border:1px solid var(--gold-dk);border-radius:16px;padding:14px 18px;margin:22px 0 6px}
@@ -260,14 +261,22 @@ footer{text-align:center;padding:30px 16px 40px;color:var(--muted);font-family:v
 <script>
 /* ═══════════ CONFIG ═══════════ */
 const PLAYERS = [
-  { name:'Sonny',   tag:'Sleeper Agent' },
-  { name:'Gregg',   tag:'The Veteran on a Comeback Journey' },
-  { name:'Mark',    tag:'Trash Talk Tyrant' },
-  { name:'Kim',     tag:'Xtra Crispy Champion' },
-  { name:'Kaylee',  tag:'Quietly Dangerous' },
-  { name:'Kathryn', tag:'In Her We Trust' },
-  { name:'Kinsley', tag:'Rookie Sensation' },
-  { name:'Sadie',   tag:'Future Hall of Famer' },
+  { name:'Sonny',   tag:'Sleeper Agent',
+    bio:'Hasn\'t practiced. Hasn\'t stretched. Hasn\'t blinked. Insiders suspect this is all part of it.' },
+  { name:'Gregg',   tag:'The Veteran on a Comeback Journey',
+    bio:'Cleared by doctors, unclear by everyone else. Says this is "his year." Has said that every year.' },
+  { name:'Mark',    tag:'Trash Talk Tyrant',
+    bio:'Leads the league in words per match. Has protested three rulings that hadn\'t happened yet. Dasher has a file on him.' },
+  { name:'Kim',     tag:'Xtra Crispy Champion',
+    bio:'The defending champ. Arrives with a target on her back and zero visible concern. The belt stays until someone takes it.' },
+  { name:'Kaylee',  tag:'Quietly Dangerous',
+    bio:'Says almost nothing. Wins almost everything. Scouts describe the vibe as "polite menace."' },
+  { name:'Kathryn', tag:'In Her We Trust',
+    bio:'Built the league, wrote the rules, and would like everyone to know she can still lose fair and square. Probably.' },
+  { name:'Kinsley', tag:'Rookie Sensation',
+    bio:'Eldest of the youth division and taking it very seriously. Has already asked if there\'s a trophy. There should be.' },
+  { name:'Sadie',   tag:'Future Hall of Famer',
+    bio:'Youngest competitor in league history. Fears no adult. The bags are almost as big as she is — advantage: Sadie.' },
 ];
 const DAYS = [
   { id:'d1', num:'Day 1', name:'Cornhole', icon:'🌽', inc:[1,2], target:11,
@@ -461,7 +470,7 @@ function renderRoster(){
     <div class="card">${img(p.name,'photo',p.name[0])}
       <div class="cbody"><div class="cname">${p.name}</div>
       <div class="cpos">${p.tag}</div>
-      <div class="cbio">Scouting report pending. Sources say: "a problem."</div></div></div>`).join('')
+      <div class="cbio">${p.bio}</div></div></div>`).join('')
   + `<div class="card dasher">${img('dasher','photo','🐾')}
       <div class="cbody"><div class="cname">Dasher</div>
       <div class="cpos">Head Referee · League Commissioner of Vibes</div>
